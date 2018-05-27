@@ -38,12 +38,7 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.FlowerView
 
         final int maxMemory = (int)(Runtime.getRuntime().maxMemory() / 1024);
         final int cacheSize = maxMemory / 8;
-        imageCache = new LruCache<Integer, Bitmap>(cacheSize){
-            @Override
-            protected int sizeOf(Integer key, Bitmap value) {
-                return value.getByteCount() / 1024;
-            }
-        };
+        imageCache = new LruCache<>(cacheSize);
 
         requestQueue = Volley.newRequestQueue(ctx);
     }
